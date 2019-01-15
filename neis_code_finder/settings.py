@@ -25,7 +25,7 @@ SECRET_KEY = '15xn0=ys1)mr5cj9alo6f)funl13y_#h03anf6vxj%=ddmuq^y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-env.9bdvzwaqzf.ap-northeast-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'code.schoolmenukr.ml']
 
 
 # Application definition
@@ -104,9 +104,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
