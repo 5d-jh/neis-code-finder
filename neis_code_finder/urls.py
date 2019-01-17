@@ -19,5 +19,6 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.get_page, name='neis_code_finder_page')
+    path('', views.get_page, name='neis_code_finder_page'),
+    path('api/', views.get_data, name='neis_code_finder_api')
 ]
