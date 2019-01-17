@@ -6,13 +6,13 @@
 ### 응답
 ```json
 {
-    school_infos: [
+    "school_infos": [
         {
-            code: "X123456789",
-            address: "서울시..."
+            "code": "X123456789",
+            "address": "서울시..."
         }, {
-            code: "X987654321",
-            address: "부산시..."
+            "code": "X987654321",
+            "address": "부산시..."
         }
     ]
 }
