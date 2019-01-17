@@ -22,7 +22,8 @@ def get(school):
     results_code = results_code[::2]
 
     results_address = re.findall(r'학교주소<\/span>(.*)<\/li>', r.text)
-    results_address.pop()
+    if len(results_address) != 0:
+        results_address.pop()
 
     iters_num = len(results_code)
     results = []
