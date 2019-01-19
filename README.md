@@ -1,7 +1,7 @@
 # neis_code_finder
 ## api
 ### 요청
-`http://127.0.0.1:8000/api/?q=[학교 이름]`
+`https://code.schoolmenukr.ml/api/?q=[학교 이름]`
 
 ### 응답
 ```json
