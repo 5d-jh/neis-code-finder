@@ -5,3 +5,6 @@
 !.elasticbeanstalk/*.global.yml
 
 requirements.txt
+
+venv/
+__pycache__/
