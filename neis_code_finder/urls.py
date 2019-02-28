@@ -18,5 +18,6 @@ from . import views
 
 urlpatterns = [
     path('', views.get_page, name='neis_code_finder_page'),
-    path('api/', views.get_data, name='neis_code_finder_api')
+    path('api/', views.get_data, name='neis_code_finder_api'),
+    path('fav/', views.get_fav, name='neis_code_finder_fav')
 ]
