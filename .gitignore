@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+requirements.txt
+zappa_settings.json
+*.zip
