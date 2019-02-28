@@ -17,7 +17,7 @@ def get(school):
 
     r = requests.post(uri, data=form, headers=headers)
 
-    soup = BeautifulSoup(r.text)
+    soup = BeautifulSoup(r.text, features="html.parser")
     school_infos = soup.find_all(class_="SchoolList")
 
     reg_code = r'searchSchul\(\'([A-Za-z0-9_]+)\'\)'
