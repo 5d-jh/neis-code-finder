@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/png" href="/fav">
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <title>NEIS 코드 찾기</title>
     <style>
         input {
@@ -41,15 +42,27 @@
             margin: 0;
         }
         .school-code {
-            background-color: rgba(41, 57, 109, 0.2);
             display: inline-block;
             padding: 4px;
-            border-radius: 3px;
             margin-bottom: 5px;
         }
         h1 {
             width: 100%;
             text-align: center;
+        }
+        .additional-info {
+            padding-bottom: 10px;
+            background-color: #e8e8e8;
+            padding: 4px;
+            padding-top: 6px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+        i {
+            width: 1em;
+            text-align: right;
+            padding-right: 5px;
+            color: gray;
         }
     </style>
 </head>
@@ -65,14 +78,15 @@
                     <td class="school-info">
                         <p><h3 class="school-code">{{school_info.code}}</h3></p>
                         <p>
-                            <strong>{{school_info.name}}</strong> | {{school_info.address}}
+                            <div class="additional-info"><i class="fas fa-school"></i> {{school_info.name}}</div>
+                            <div class="additional-info"><i class="fas fa-map-marker-alt"></i>{{school_info.address}}</div>
                         </p>
                     </td>
                 </tr>
             {% endfor %}
         </table>
         <footer>
-            <a class="github-button" href="https://github.com/5d-jh/neis_code_finder/issues" data-size="large" aria-label="Issue 5d-jh/neis_code_finder on GitHub">Issue</a>
+            <a class="github-button" href="https://github.com/5d-jh/neis_code_finder#readme" data-size="large" aria-label="Issue 5d-jh/neis_code_finder on GitHub">API</a>
         </footer>
     </div>
 </body>
