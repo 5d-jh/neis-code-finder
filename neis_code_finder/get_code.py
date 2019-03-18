@@ -32,7 +32,8 @@ def get(school):
     school_types = {
         '초': 'elementary',
         '중': 'middle',
-        '고': 'high'
+        '고': 'high',
+        '특': 'special'
     }
     results_type = [info.find_all(class_="mapD_Class")[0].string for info in school_infos]
     results_type = [school_types[sch_type] for sch_type in results_type]
