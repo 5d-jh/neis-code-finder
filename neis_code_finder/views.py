@@ -6,7 +6,8 @@ import os
 def get_page(req):
     template_data = {}
     if 'q' in req.GET:
-        template_data['school_infos'] = get_code.get(req.GET['q'])
+        page =  req.GET['page'] if 'page' in req.GET else None
+        template_data['school_infos'] = get_code.get(req.GET['q'], page)
         template_data['query'] = req.GET['q']
 
     return render(req, 'neis_code_finder/main.html', template_data)
@@ -14,7 +15,8 @@ def get_page(req):
 def get_data(req):
     json_data = {}
     if 'q' in req.GET:
-        json_data['school_infos'] = get_code.get(req.GET['q'])
+        page =  req.GET['page'] if 'page' in req.GET else None
+        json_data['school_infos'] = get_code.get(req.GET['q'], page)
     else:
         json_data['school_infos'] = []
     

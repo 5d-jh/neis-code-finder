@@ -1,51 +1,37 @@
-import re
 import requests
-from bs4 import BeautifulSoup
+import json
 
-def get(school):
-    uri = 'https://www.schoolinfo.go.kr/ei/ss/Pneiss_f01_l0.do'
+def get(school, page_num=1):
+    uri = "https://www.schoolinfo.go.kr/ei/ss/Pneiss_f01_l0.do"
     form = {
-        "SEARCH_GS_HANGMOK_CD": "",
-        "SEARCH_GS_HANGMOK_NM": "",
-        "SEARCH_SCHUL_NM": school.encode('EUC-KR'),
-        "SEARCH_GS_BURYU_CD": "",
-        "SEARCH_KEYWORD": school.encode('EUC-KR')
+        "SEARCH_SCHUL_NM": school,
+        "pageNumber": page_num,
+        "callbackMode": "json",
+        "schulCrseScCode": "",
+        "hsKndScCode": "",
+        "fondScCode": ""
     }
     headers = {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
     }
 
     r = requests.post(uri, data=form, headers=headers)
 
-    soup = BeautifulSoup(r.text, features="html.parser")
-    school_infos = soup.find_all(class_="SchoolList")
+    response_json = json.loads(r.text)
 
-    reg_code = r'searchSchul\(\'([A-Za-z0-9_]+)\'\)'
-    results_code = [re.findall(reg_code, str(info.a))[0] for info in school_infos]
+    result = []
 
-    results_name = [info.a.string for info in school_infos]
-    
-    reg_addr = r'<\/span>(.*)<\/li>'
-    results_address = [str(info.find_all('li')[1]) for info in school_infos]
-    results_address = [re.findall(reg_addr, addr)[0] for addr in results_address]
-
-    school_types = {
-        '초': 'elementary',
-        '중': 'middle',
-        '고': 'high',
-        '특': 'special'
-    }
-    results_type = [info.find_all(class_="mapD_Class")[0].string for info in school_infos]
-    results_type = [school_types[sch_type] for sch_type in results_type]
-
-    iters_num = len(results_code)
-    results = []
-    for i in range(iters_num):
-        results.append({
-            'code': results_code[i],
-            'address': results_address[i],
-            'name': results_name[i],
-            'type': results_type[i]
+    for school_info in response_json:
+        result.append({
+            "code": school_info["SCHUL_CODE"],
+            "name": school_info["SCHUL_NM"],
+            "type": {
+                "02": "elementary",
+                "03": "middle",
+                "04": "high",
+                "05": ""
+            }[school_info["SCHUL_CRSE_SC_CODE"]],
+            "address": school_info["ADDRESS"]
         })
 
-    return results
+    return result
