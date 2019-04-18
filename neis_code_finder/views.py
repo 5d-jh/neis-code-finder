@@ -9,6 +9,7 @@ def get_page(req):
         page =  req.GET['page'] if 'page' in req.GET else None
         template_data['school_infos'] = get_code.get(req.GET['q'], page)
         template_data['query'] = req.GET['q']
+        template_data['page'] = page or '1'
 
     return render(req, 'neis_code_finder/main.html', template_data)
 
