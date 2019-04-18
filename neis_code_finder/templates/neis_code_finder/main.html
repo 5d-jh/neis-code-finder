@@ -18,6 +18,10 @@
             font-size: 20px;
             width: 100%;
             margin-bottom: 20px;
+            border: 1.7px solid transparent;
+        }
+        input:focus {
+            border: 1.7px solid black;
         }
         .body {
             max-width: 800px;
@@ -44,7 +48,7 @@
         }
         .additional-info {
             padding-bottom: 10px;
-            background-color: #e8e8e8;
+            border: 1.7px solid #e8e8e8;
             padding: 4px;
             border-radius: 3px;
             display: inline-block;
@@ -52,8 +56,6 @@
 
         .button {
             text-align: center;
-            padding-top: 3px;
-            padding-bottom: 3px;
             border-radius: 3px;
             border: 1.7px solid #e8e8e8;
             color: black;
@@ -93,11 +95,18 @@
             margin: 100px 0;
         }
 
+        .footer-title {
+            display: inline;
+            margin: 0;
+        }
+        .footer-img {
+            width: 20px;
+            vertical-align: middle;
+        }
+
         .link {
-            padding: 10px;
-            border-radius: 3px;
             display: inline-block;
-            text-decoration: none;
+            color: #336eff;
         }
 
         i {
@@ -106,7 +115,11 @@
             padding-right: 5px;
         }
         footer {
+            padding: 10px 0;
             margin-bottom: 35px;
+        }
+        footer>.footer-title::after {
+            content: " \000B7";
         }
     </style>
 </head>
@@ -116,23 +129,26 @@
         <form action="/" method="get">
             <input type="text" name="q" placeholder="학교이름을 입력하세요.." value={{query}}>
         </form>
-            {% if page != '1' %}
-                <div class="button page-control"><a href="/?q={{query}}&page={{page|add:-1}}"><i class="fas fa-chevron-up"></i>이전 페이지</a></div>
+            {% if query %}
+                {% if page != '1' %}
+                    <div class="button page-control"><a href="/?q={{query}}&page={{page|add:-1}}"><i class="fas fa-chevron-up"></i>이전 페이지</a></div>
+                {% endif %}
+
+                {% for school_info in school_infos %}
+                    <div class="school-info">
+                        <div><h3 class="school-code">{{school_info.code}}</h3></div>
+                        <div class="additional-info"><i class="fas fa-school"></i> {{school_info.name}}</div>
+                        <div class="additional-info"><i class="fas fa-map-marker-alt"></i>{{school_info.address}}</div>
+                    </div>
+                {% empty %}
+                    <div class="empty-alert"><i class="fas fa-ban"></i>해당 페이지에서 학교를 찾을 수 없습니다.</div>
+                {% endfor %}
+
+                <div class="button page-control"><a href="/?q={{query}}&page={{page|add:1}}"><i class="fas fa-chevron-down"></i>다음 페이지</a></div>
             {% endif %}
-
-            {% for school_info in school_infos %}
-                <div class="school-info">
-                    <div><h3 class="school-code">{{school_info.code}}</h3></div>
-                    <div class="additional-info"><i class="fas fa-school"></i> {{school_info.name}}</div>
-                    <div class="additional-info"><i class="fas fa-map-marker-alt"></i>{{school_info.address}}</div>
-                </div>
-            {% empty %}
-                <div class="empty-alert"><i class="fas fa-ban"></i>해당 페이지에서 학교를 찾을 수 없습니다.</div>
-            {% endfor %}
-
-            <div class="button page-control"><a href="/?q={{query}}&page={{page|add:1}}"><i class="fas fa-chevron-down"></i>다음 페이지</a></div>
         <footer>
-            <a class="button link" href="https://github.com/5d-jh/neis_code_finder#readme"><i class="fas fa-file-alt"></i>API 문서</a>
+            <h4 class="footer-title"> NEIS code finder</h4>
+            <a class="link" href="https://github.com/5d-jh/neis_code_finder#readme"><i class="fas fa-file-alt"></i>API 문서</a>
         </footer>
     </div>
 </body>
