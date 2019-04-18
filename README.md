@@ -8,7 +8,7 @@ import requests
 import json
 
 url = 'https://code.schoolmenukr.ml/api?q=한국학교&page=2'
-response = requests.get(url)
+response = requests.get(url)
 school_infos = json.loads(response.text)
 print(school_infos)
 ```
@@ -24,6 +24,8 @@ print(school_infos)
 page 파라미터가 없을 경우 첫 페이지를 불러옵니다.
 
 ## 응답
+Content-Type: `application/json`
+
 ### 응답 예시
 ```json
 {
