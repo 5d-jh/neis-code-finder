@@ -1,0 +1,7 @@
+Dockerfile*
+docker-compose*
+.env
+*/bin
+*/obj
+README.md
+LICENSE
