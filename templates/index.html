@@ -20,19 +20,20 @@
                     <div class="button page-control"><a href="/?q={{query}}&page={{page-1}}"><i class="fas fa-chevron-up"></i>이전 페이지</a></div>
                 {% endif %}
 
-                {% for school_info in school_infos %}
-                    {% if school_info %}
-                        <div class="school-info">
-                            <div><h3 class="school-code">{{school_info.code}}</h3></div>
-                            <div class="additional-info"><i class="fas fa-school"></i> {{school_info.name}}</div>
-                            <div class="additional-info"><i class="fas fa-map-marker-alt"></i>{{school_info.address}}</div>
-                        </div>
-                    {% else %}
-                        <div class="empty-alert"><i class="fas fa-ban"></i>해당 페이지에서 학교를 찾을 수 없습니다.</div>
-                    {% endif %}
-                {% endfor %}
-
-                <div class="button page-control"><a href="/?q={{query}}&page={{page+1}}"><i class="fas fa-chevron-down"></i>다음 페이지</a></div>
+                {% if school_infos %}
+                    {% for school_info in school_infos %}
+                        {% if school_info %}
+                            <div class="school-info">
+                                <div><h3 class="school-code">{{school_info.code}}</h3></div>
+                                <div class="additional-info"><i class="fas fa-school"></i> {{school_info.name}}</div>
+                                <div class="additional-info"><i class="fas fa-map-marker-alt"></i>{{school_info.address}}</div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="button page-control"><a href="/?q={{query}}&page={{page+1}}"><i class="fas fa-chevron-down"></i>다음 페이지</a></div>
+                {% else %}
+                    <div class="empty-alert"><i class="fas fa-ban"></i>해당 페이지에서 학교를 찾을 수 없습니다.</div>
+                {% endif %}
             {% endif %}
         <footer>
             <h4 class="footer-title"> NEIS code finder</h4>
