@@ -3,6 +3,8 @@ version: '3'
 services:
   neis_code_finder:
     image: neis_code_finder
-    build: .
+    build:
+      context: .
+      dockerfile: 'Dockerfile'
     ports:
       - 80:5000

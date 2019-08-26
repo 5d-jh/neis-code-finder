@@ -1,8 +1,8 @@
 // See https://aka.ms/vscode-remote/devcontainer.json for format details or
 // https://aka.ms/vscode-dev-containers/definitions for sample configurations.
 {
-	"dockerComposeFile": "docker-compose.debug.yml",
+	"dockerComposeFile": "docker-compose.yml",
 	"service": "neis_code_finder",
-	"workspaceFolder": "/usr/src/app",
+	"workspaceFolder": "/app",
 	"extensions": []
 }

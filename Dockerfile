@@ -1,12 +1,6 @@
-FROM python:3
+FROM tiangolo/uwsgi-nginx-flask:python3.7
 
-WORKDIR /usr/src/app
-ADD . /usr/src/app
-
-ENV FLASK_APP app.py
-ENV FLASK_DEBUG 1
-
-EXPOSE 5000
+WORKDIR /app
+COPY ./app /app
 
 RUN pip install -r requirements.txt
-CMD ["flask", "run", "--host=0.0.0.0"]

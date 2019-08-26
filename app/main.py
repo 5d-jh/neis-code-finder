@@ -21,3 +21,6 @@ def get_json():
     query = request.args.get('q')
     page = request.args.get('page')
     return jsonify(school_infos=get_code.get(query, page) if query else [])
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', debug=True, port=80)
