@@ -1,8 +1,8 @@
 // See https://aka.ms/vscode-remote/devcontainer.json for format details or
 // https://aka.ms/vscode-dev-containers/definitions for sample configurations.
 {
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "neis_code_finder",
-	"workspaceFolder": "/app",
-	"extensions": []
+	"dockerComposeFile": "docker-compose-dev.yml",
+	"service": "flask",
+	"workspaceFolder": "/neis_code_finder",
+	"extensions": ["ms-python.python"]
 }

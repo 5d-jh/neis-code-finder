@@ -1,0 +1,4 @@
+requests==2.22.0
+flask==1.1.1
+uWSGI==2.0.18
+pylint
