@@ -1,13 +1,11 @@
-FROM python:3.7
+# To enable ssh & remote debugging on app service change the base image to the one below
+# FROM mcr.microsoft.com/azure-functions/python:2.0-python3.7-appservice
+FROM mcr.microsoft.com/azure-functions/python:2.0-python3.7
 
-EXPOSE 5000
+ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
+    AzureFunctionsJobHost__Logging__Console__IsEnabled=true
 
-ENV PYTHONPATH /neis_code_finder/app
-ENV STATIC_URL /static
-ENV STATIC_PATH /neis_code_finder/app/static
+COPY requirements.txt /
+RUN pip install -r /requirements.txt
 
-WORKDIR /neis_code_finder
-COPY . /neis_code_finder
-
-RUN pip install -r requirements.txt
-CMD ["uwsgi", "--ini", "uwsgi.ini"]
+COPY . /home/site/wwwroot
