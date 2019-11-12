@@ -1,24 +1,26 @@
 import logging
 
 import azure.functions as func
-
+from jinja2 import Template
+from ..school_info import get_data
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+    query = req.params.get('q') or ''
+    page = int(req.params.get('page') or 1)
 
-    name = req.params.get('name')
-    if not name:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            pass
-        else:
-            name = req_body.get('name')
+    data = get_data(query)
 
-    if name:
-        return func.HttpResponse(f"Hello {name}!")
-    else:
-        return func.HttpResponse(
-             "Please pass a name on the query string or in the request body",
-             status_code=400
-        )
+    f = open("app/index.html", "r")
+    html = f.read()
+
+    tm = Template(html)
+    rendered = tm.render(
+        query=query,
+        page=page,
+        school_infos=data[0],
+        is_all=data[1]
+    )
+
+    f.close()
+    
+    return func.HttpResponse(body=rendered, headers={"Content-Type": "text/html;"})
