@@ -133,10 +133,6 @@
             <input type="text" name="q" placeholder="학교이름을 입력하세요.." value={{query}}>
         </form>
             {% if query %}
-                {% if page != 1 %}
-                    <div class="button page-control"><a href="/?q={{query}}&page={{page-1}}"><i class="fas fa-chevron-up"></i>이전 페이지</a></div>
-                {% endif %}
-
                 {% if school_infos %}
                     {% for school_info in school_infos %}
                         {% if school_info %}
@@ -151,7 +147,7 @@
                     <div class="empty-alert"><i class="fas fa-ban"></i>해당 페이지에서 학교를 찾을 수 없습니다.</div>
                 {% endif %}
             {% endif %}
-            {% if is_all %}
+            {% if not is_all %}
                 <div class="school-info" style="color: grey">
                     <i class="fas fa-info-circle"></i> <i>결과가 너무 길어 생략된 학교 정보가 있습니다. 원하는 학교를 찾지 못했다면 더 구체적인 학교명을 입력하세요.</i>
                 </div>
