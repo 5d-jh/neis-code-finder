@@ -1,12 +1,12 @@
 # NEIS code finder API 가이드
 ## 요청
-GET `/api`
+GET `https://www.schoolcodekr.ml/api`
 
 ### 요청 예시
 ```python
 import requests
 import json
-url = 'https://code.schoolmenukr.ml/api?q=한국학교&page=2'
+url = 'https://www.schoolcodekr.ml/api?q=한국학교'
 response = requests.get(url)
 school_infos = json.loads(response.text)
 print(school_infos)
@@ -16,11 +16,8 @@ print(school_infos)
 |이름|필수 여부|값(자료형)|
 |:--:|:--:|:--:|
 |`q`|필수|학교 이름(문자열)|
-|`page`|선택|페이지 번호(정수)|
 
 페이지 당 최대 20개의 정보를 불러옵니다.
-
-page 파라미터가 없을 경우 첫 페이지를 불러옵니다.
 
 ## 응답
 Content-Type: `application/json`
