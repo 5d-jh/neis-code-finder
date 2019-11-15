@@ -4,7 +4,8 @@ import { createReadStream } from "fs";
 export interface SchoolInfo {
     address: string,
     code: string,
-    name: string
+    name: string,
+    type: string
 };
 
 export const getData = (searchString: string): Promise<{
@@ -36,7 +37,8 @@ export const getData = (searchString: string): Promise<{
             searchResult.push({
                 address: String(row[1]),
                 code: String(row[2]),
-                name: String(row[3])
+                name: String(row[3]),
+                type: String(row[5])
             });
         }
     })
