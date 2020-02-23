@@ -1,12 +1,12 @@
 # NEIS code finder API 가이드
 ## 요청
-GET `https://www.schoolcodekr.ml/api`
+GET `https://schoolmenukr.ml/code/api`
 
 ### 요청 예시
 ```python
 import requests
 import json
-url = 'https://www.schoolcodekr.ml/api?q=한국학교'
+url = 'https://schoolmenukr.ml/code/api?q=한국학교'
 response = requests.get(url)
 school_infos = json.loads(response.text)
 print(school_infos)
@@ -51,6 +51,5 @@ Content-Type: `application/json`
 |`school_infos.code`|NEIS 코드|첫 자리가 알파벳이고 나머지가 숫자인 열 자리 문자열입니다.|
 |`school_infos.address`|학교 주소|학교의 소재지입니다.|
 |`school_infos.name`|학교 이름|학교의 이름입니다.|
-|`server_message.all_loaded`|전부 다 불러왔는지 여부|학교 정보가 `school_infos`에 있는 것이 전부라면 `true`, 아니면 `false` 입니다.|
 
 elementary는 초등학교, middle은 중학교, high는 고등학교, special은 특수학교 입니다.
